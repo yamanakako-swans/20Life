@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+}
+
+body {
+    background-color: #2c3e50; /* Dark blue background */
+    color: #ecf0f1; /* Light text for contrast */
+    font-family: Arial, sans-serif; /* A clean, modern font */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align to the top */
+    height: 100vh;
+    padding: 20px; /* Padding for buttons and spacing */
+}
+
+/* Style for the title */
+.full-screen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    z-index: 5; /* Below the title but above other content */
+}
+
+.hide-overlay {
+    display: none;
+}
+
+#title {
+    font-size: 5rem; /* Large text size for the initial title */
+    color: #ecf0f1; /* Light text for contrast */
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10; /* Make sure the title is above the overlay */
+    /* Other styles remain the same */
+}
+
+
+/* Keyframe animation for the title */
+@keyframes moveTitleDown {
+    0% {
+        top: 50%; /* Center vertically */
+        font-size: 5rem;
+        opacity: 1;
+    }
+    100% {
+        top: 95%; /* Move near the bottom */
+        font-size: 1.5rem; /* Final font size */
+        opacity: 1;
+    }
+}
+
+#title.final {
+    position: absolute;
+    top: 95%; /* Adjust this value as needed to place it below the grid */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem; /* Adjust the size as needed */
+    animation: moveTitleDown 1s ease forwards;
+}
+
+#controls {
+    text-align: center;
+    margin-bottom: 10px; /* Space between controls and the grid */
+}
+
+button {
+    background-color: #34495e; /* Dark button background */
+    color: #ecf0f1; /* Light text */
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px; /* Slightly rounded corners for the buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for button background color */
+}
+
+button:hover {
+    background-color: #4e6a85; /* Slightly lighter blue on hover */
+}
+
+button.button-active {
+    background-color: #16a085; /* A green shade to indicate an active state */
+}
+
+/* Style for the grid container */
+#grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    gap: 1px;
+    border: 6px solid #16a085; /* Thicker border */
+    border-radius: 10px;
+    padding: 15px; /* Space around the grid */
+    box-sizing: content-box;
+    margin: 20px 0; /* Adjust margin as needed */
+
+    /* Scaling based on viewport */
+    width: 80vmin; /* Use vmin for both width and height to maintain aspect ratio */
+    height: 80vmin;
+}
+
+#grid div {
+    background-color: #34495e;
+    border-radius: 3px; /* Rounded corners for grid cells */
+}
+
+#grid div.alive {
+    background-color: #16a085; /* Use the active button color for alive cells */
+}
